@@ -4,7 +4,7 @@ import { styled } from 'styled-components';
 const MenuWrapperStyled = styled.ul`
     display: flex;
     list-style: none;
-    color: white;
+    color: #dcdcf4;
     padding: 0 14rem 0px 7rem;
     margin: 0;
     background-color: rgba(255, 255, 255, 0.05);
@@ -24,17 +24,17 @@ const MenuWrapperStyled = styled.ul`
 `;
 const MenuStyled = styled.li`
     margin: 0 0 0 2.8rem;
-    color: white;
+    color: #dcdcf4;
     padding: 2.8rem 0 2.5rem 0;
     border-bottom: 4px solid transparent;
     &:focus,
     &:active,
     &:hover {
-        border-bottom: 4px solid white;
+        border-bottom: 4px solid #dcdcf4;
         color: #000;
     }
     &:hover > a {
-        color: #white;
+        color: #dcdcf4;
     }
     &.close-menu {
         display: none;
@@ -61,9 +61,9 @@ const MenuStyled = styled.li`
 
 const MenuLinkStyled = styled.a`
     text-decoration: none;
-    color: white;
+    color: #dcdcf4;
     &:visited {
-        color: white;
+        color: #dcdcf4;
     }
     @media (max-width: 841px) {
         color: hsl(220, 13%, 13%);
@@ -72,12 +72,14 @@ const MenuLinkStyled = styled.a`
         }
         &.close-menu-link:visited,
         &.close-menu-link {
-            color: white;
+            color: #dcdcf4;
         }
     }
-    font-weight: 500;
     > .menu-number {
-        font-weight: 700;
+        font-weight: 900;
+    }
+    > .menu-name {
+        font-weight: 400;
     }
 `;
 
@@ -86,10 +88,10 @@ const Menus = ({open, closeMenu}) => {
     return (
         <MenuWrapperStyled open={open}>
             <MenuStyled className='close-menu'><MenuLinkStyled href="#" className='close-menu-link' onClick={closeMenu} >&times;</MenuLinkStyled></MenuStyled>
-            <MenuStyled><MenuLinkStyled href="#"><span className='menu-number'>00</span> HOME</MenuLinkStyled></MenuStyled>
-            <MenuStyled><MenuLinkStyled href="#destination"><span className='menu-number'>01</span> DESTINATION</MenuLinkStyled></MenuStyled>
-            <MenuStyled><MenuLinkStyled href="#crew"><span className='menu-number'>02</span> CREW</MenuLinkStyled></MenuStyled>
-            <MenuStyled><MenuLinkStyled href="#technology"><span className='menu-number'>03</span> TECHNOLOGY</MenuLinkStyled></MenuStyled>
+            <MenuStyled><MenuLinkStyled href="#"><span className='menu-number'>00</span> <span className='menu-name'>HOME</span></MenuLinkStyled></MenuStyled>
+            <MenuStyled><MenuLinkStyled href="#destination"><span className='menu-number'>01</span> <span className='menu-name'>DESTINATION</span></MenuLinkStyled></MenuStyled>
+            <MenuStyled><MenuLinkStyled href="#crew"><span className='menu-number'>02</span> <span className='menu-name'>CREW</span></MenuLinkStyled></MenuStyled>
+            <MenuStyled><MenuLinkStyled href="#technology"><span className='menu-number'>03</span> <span className='menu-name'>TECHNOLOGY</span></MenuLinkStyled></MenuStyled>
         </MenuWrapperStyled>
     )
 }

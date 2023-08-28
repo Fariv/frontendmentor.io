@@ -5,7 +5,9 @@ const HomeStyled = styled.div`
     background: url("${HomeBgImageDesktop}") no-repeat;
     background-size: cover;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
+    margin: 0 auto;
+    position: relative;
 `;
 
 export default HomeStyled;

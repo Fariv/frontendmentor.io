@@ -6,6 +6,7 @@ const LogoStyled = styled.div`
     flex: 1 0 auto;
     > .logo-div {
         padding: 4.5rem 3.5rem;
+        cursor: pointer;
     }
     > .hr-div {
         display: flex;
