@@ -5,7 +5,7 @@ const MenuWrapperStyled = styled.ul`
     display: flex;
     list-style: none;
     color: #dcdcf4;
-    padding: 0 14rem 0px 7rem;
+    padding: 0 14.75rem 0px 2.75rem;
     margin: 0;
     background-color: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(36px);
@@ -25,7 +25,7 @@ const MenuWrapperStyled = styled.ul`
 const MenuStyled = styled.li`
     margin: 0 0 0 2.8rem;
     color: #dcdcf4;
-    padding: 2.8rem 0 2.5rem 0;
+    padding: 2.25rem 0 2.25rem 0;
     border-bottom: 4px solid transparent;
     &:focus,
     &:active,
@@ -65,6 +65,7 @@ const MenuLinkStyled = styled.a`
     &:visited {
         color: #dcdcf4;
     }
+    letter-spacing: 2px;
     @media (max-width: 841px) {
         color: hsl(220, 13%, 13%);
         &:visited {
@@ -77,6 +78,7 @@ const MenuLinkStyled = styled.a`
     }
     > .menu-number {
         font-weight: 900;
+        margin-right: 5px;
     }
     > .menu-name {
         font-weight: 400;
