@@ -1,11 +1,12 @@
-import React from 'react'
 import TopbarStyled from '../styled/TopbarStyled'
+import Logo from './Logo'
+import Menus from './Menus'
 
 const Topbar = () => {
     return (
         <TopbarStyled>
-            <div>Logo</div>
-            <div>Menus</div>
+            <Logo />
+            <Menus />
         </TopbarStyled>
     )
 }
