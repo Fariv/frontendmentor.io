@@ -1,9 +1,10 @@
+import { useState } from "react";
 import { css, styled } from "styled-components";
 
 const HomeContentStyled = styled.div`
     display: flex;
     justify-content: space-between;
-    margin: 7rem;
+    margin: 7rem 7rem 0 7rem;
 `;
 
 const sharedCss = css`
@@ -51,9 +52,30 @@ const CircleStyled = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+`;
+
+const CircleOverlayStyled = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 450px;
+    height: 450px;
+    background-color: rgba(255, 255, 255, ${prop => prop.overlayopacity});
+    transition: background-color ease-in 0.8s;
 `;
 
 const HomeContent = () => {
+
+    const [overLayOpacity, setOverLayOpacity] = useState(0);
+    const showOverLay = () => {
+        setOverLayOpacity(0.1);
+    }
+    const hideOverLay = () => {
+        setOverLayOpacity(0);
+    }
+
     return (
         <HomeContentStyled>
             <LeftSideStyled>
@@ -68,7 +90,9 @@ const HomeContent = () => {
                 </LeftSideTextWrapper>
             </LeftSideStyled>
             <RightSideStyled>
-                <CircleStyled>Explore</CircleStyled>
+                <CircleOverlayStyled overlayopacity={overLayOpacity}>
+                    <CircleStyled onMouseOver={showOverLay} onMouseLeave={hideOverLay}>Explore</CircleStyled>
+                </CircleOverlayStyled>
             </RightSideStyled>
         </HomeContentStyled>
     )

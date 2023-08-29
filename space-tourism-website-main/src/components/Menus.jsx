@@ -32,6 +32,7 @@ const MenuStyled = styled.li`
     &:hover {
         border-bottom: 4px solid #dcdcf4;
         color: #000;
+        transition: border-bottom ease-in 0.25s;
     }
     &:hover > a {
         color: #dcdcf4;
@@ -90,10 +91,10 @@ const Menus = ({open, closeMenu}) => {
     return (
         <MenuWrapperStyled open={open}>
             <MenuStyled className='close-menu'><MenuLinkStyled href="#" className='close-menu-link' onClick={closeMenu} >&times;</MenuLinkStyled></MenuStyled>
-            <MenuStyled><MenuLinkStyled href="#"><span className='menu-number'>00</span> <span className='menu-name'>HOME</span></MenuLinkStyled></MenuStyled>
-            <MenuStyled><MenuLinkStyled href="#destination"><span className='menu-number'>01</span> <span className='menu-name'>DESTINATION</span></MenuLinkStyled></MenuStyled>
-            <MenuStyled><MenuLinkStyled href="#crew"><span className='menu-number'>02</span> <span className='menu-name'>CREW</span></MenuLinkStyled></MenuStyled>
-            <MenuStyled><MenuLinkStyled href="#technology"><span className='menu-number'>03</span> <span className='menu-name'>TECHNOLOGY</span></MenuLinkStyled></MenuStyled>
+            <MenuStyled><MenuLinkStyled href="/"><span className='menu-number'>00</span> <span className='menu-name'>HOME</span></MenuLinkStyled></MenuStyled>
+            <MenuStyled><MenuLinkStyled href="/destination"><span className='menu-number'>01</span> <span className='menu-name'>DESTINATION</span></MenuLinkStyled></MenuStyled>
+            <MenuStyled><MenuLinkStyled href="/crew"><span className='menu-number'>02</span> <span className='menu-name'>CREW</span></MenuLinkStyled></MenuStyled>
+            <MenuStyled><MenuLinkStyled href="/technology"><span className='menu-number'>03</span> <span className='menu-name'>TECHNOLOGY</span></MenuLinkStyled></MenuStyled>
         </MenuWrapperStyled>
     )
 }
