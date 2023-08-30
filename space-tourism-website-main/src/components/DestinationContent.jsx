@@ -149,7 +149,7 @@ const DestinationContent = () => {
                     <h1 className='menu-number'>01</h1> 
                     <h1>Pick your destination</h1>
                 </LeftSideText>
-                <LeftSideCosmicBody cosmicbodyname="moon" />
+                <LeftSideCosmicBody cosmicbodyname={Object.keys(activeTab).filter((v) => activeTab[v] === "1" ? v : null)} />
             </LeftSideStyled>
             <RightSideStyled>
                 <Tabs>
