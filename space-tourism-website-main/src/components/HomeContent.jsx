@@ -4,7 +4,7 @@ import { css, styled } from "styled-components";
 const HomeContentStyled = styled.div`
     display: flex;
     justify-content: space-between;
-    margin: 7rem 7rem 0 7rem;
+    margin: 6rem 7rem 0 7rem;
 `;
 
 const sharedCss = css`
