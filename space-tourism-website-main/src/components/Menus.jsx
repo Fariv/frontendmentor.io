@@ -55,6 +55,7 @@ const MenuStyled = styled.li`
         &:active,
         &:hover {
             border-bottom: 4px solid transparent;
+            transition: border-bottom ease-in 0.25s;
         }
     }
     
