@@ -108,12 +108,51 @@ const TabContent = styled.div`
     width: 0;
     height: 0;
     padding-top: 0;
+    flex-direction: column;
     &.active {
         opacity: 1;
         width: 100%;
         height: 100%;
         padding-top: 1.5rem;
         transition: height ease-out 2s, opacity ease-out 2s;
+    }
+    > h1 {
+        font-family: 'Bellefair', serif;
+        font-size: 100px;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+    > p {
+        font-family: 'Barlow', sans-serif;
+        font-size: 18px;
+        width: 436px;
+        margin-bottom: 3.4rem;
+        line-height: 1.7;
+    }
+    > hr {
+        width: 444px;
+        border: 1px solid #383B4B;
+    }
+    > .footer {
+        margin-top: 0.88rem;
+        padding-top: 0.88rem;
+        display: flex;
+        > .right-footer,
+        > .left-footer {
+            width: 50%;
+            text-transform: uppercase;
+            > div:first-child {
+                font-family: 'Barlow Condensed', sans-serif;
+                font-size: 14px;
+                letter-spacing: 3px;
+                margin: 0.75rem 0;
+            }
+            > div:nth-child(2) {
+                font-family: 'Bellefair', serif;
+                font-size: 28px;
+                margin: 0.75rem 0;
+            }
+        }
     }
 `;
 
@@ -160,7 +199,23 @@ const DestinationContent = () => {
                 </Tabs>
                 <TabContents>
                     <TabContent id="moon" className={activeTab['moon'] === "1" ? 'active' : null}>
-                        Moon Details
+                        <h1>MOON</h1>
+                        <p>
+                            See our planet as you’ve never seen it before. 
+                            A perfect relaxing trip away to help regain perspective and come back refreshed. 
+                            While you’re there, take in some history by visiting the Luna 2 and Apollo 11 landing sites.
+                        </p>
+                        <hr />
+                        <div className='footer'>
+                            <div className='left-footer'>
+                                <div>AVG. DISTANCE</div>
+                                <div>384,400 km</div>
+                            </div>
+                            <div className='right-footer'>
+                                <div>Est. travel time</div>
+                                <div>3 days</div>
+                            </div>
+                        </div>
                     </TabContent>
                     <TabContent id="mars" className={activeTab['mars'] === "1" ? 'active' : null}>
                         Mars Details
