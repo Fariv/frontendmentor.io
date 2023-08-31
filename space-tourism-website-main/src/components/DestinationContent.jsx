@@ -109,48 +109,92 @@ const TabContent = styled.div`
     height: 0;
     padding-top: 0;
     flex-direction: column;
+    > h1 {
+        width: 0;
+        height: 0;
+    }
+    > p {
+        width: 0;
+        height: 0;
+        display: none;
+    }
+    > hr {
+        width: 0;
+        height: 0;
+    }
+    > .footer {
+        width: 0;
+        height: 0;
+        > .right-footer,
+        > .left-footer {
+            width: 0;
+            height: 0;
+            > div:first-child {
+                width: 0;
+                height: 0;
+            }
+            > div:nth-child(2) {
+                width: 0;
+                height: 0;
+            }
+        }
+    }
     &.active {
         opacity: 1;
         width: 100%;
         height: 100%;
         padding-top: 1.5rem;
         transition: height ease-out 2s, opacity ease-out 2s;
-    }
-    > h1 {
-        font-family: 'Bellefair', serif;
-        font-size: 100px;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-    }
-    > p {
-        font-family: 'Barlow', sans-serif;
-        font-size: 18px;
-        width: 436px;
-        margin-bottom: 3.4rem;
-        line-height: 1.7;
-    }
-    > hr {
-        width: 444px;
-        border: 1px solid #383B4B;
-    }
-    > .footer {
-        margin-top: 0.88rem;
-        padding-top: 0.88rem;
-        display: flex;
-        > .right-footer,
-        > .left-footer {
-            width: 50%;
-            text-transform: uppercase;
-            > div:first-child {
-                font-family: 'Barlow Condensed', sans-serif;
-                font-size: 14px;
-                letter-spacing: 3px;
-                margin: 0.75rem 0;
-            }
-            > div:nth-child(2) {
-                font-family: 'Bellefair', serif;
-                font-size: 28px;
-                margin: 0.75rem 0;
+        > h1 {
+            font-family: 'Bellefair', serif;
+            font-size: 100px;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            width: 100%;
+            height: 100%;
+        }
+        > p {
+            font-family: 'Barlow', sans-serif;
+            font-size: 18px;
+            max-width: 436px;
+            margin-bottom: 3.4rem;
+            line-height: 1.7;
+            width: 436px;
+            height: 100%;
+            display: block;
+        }
+        > hr {
+            max-width: 444px;
+            width: 444px;
+            border: 1px solid #383B4B;
+            height: auto;
+        }
+        > .footer {
+            width: 100%;
+            height: 100%;
+            margin-top: 0.88rem;
+            padding-top: 0.88rem;
+            display: flex;
+            > .right-footer,
+            > .left-footer {
+                width: 50%;
+                text-transform: uppercase;
+                height: auto;
+                > div:first-child {
+                    font-family: 'Barlow Condensed', sans-serif;
+                    font-size: 14px;
+                    letter-spacing: 3px;
+                    margin: 0.75rem 0;
+                    width: auto;
+                    height: auto;
+                }
+                > div:nth-child(2) {
+                    font-family: 'Bellefair', serif;
+                    font-size: 28px;
+                    margin: 0.75rem 0;
+                    width: auto;
+                    height: auto;
+                }
             }
         }
     }
@@ -218,13 +262,60 @@ const DestinationContent = () => {
                         </div>
                     </TabContent>
                     <TabContent id="mars" className={activeTab['mars'] === "1" ? 'active' : null}>
-                        Mars Details
+                        <h1>MARS</h1>
+                        <p>
+                            Don’t forget to pack your hiking boots. 
+                            You’ll need them to tackle Olympus Mons, the tallest planetary mountain in our solar system. 
+                            It’s two and a half times the size of Everest!
+                        </p>
+                        <hr />
+                        <div className='footer'>
+                            <div className='left-footer'>
+                                <div>AVG. DISTANCE</div>
+                                <div>225 MIL. km</div>
+                            </div>
+                            <div className='right-footer'>
+                                <div>Est. travel time</div>
+                                <div>9 months</div>
+                            </div>
+                        </div>
                     </TabContent>
                     <TabContent id="europa" className={activeTab['europa'] === "1" ? 'active' : null}>
-                        Europa Details
+                        <h1>EUROPA</h1>
+                        <p>
+                            The smallest of the four Galilean moons orbiting Jupiter, Europa is a winter lover’s dream. 
+                            With an icy surface, it’s perfect for a bit of ice skating, curling, hockey, or simple relaxation in your snug wintery cabin.
+                        </p>
+                        <hr />
+                        <div className='footer'>
+                            <div className='left-footer'>
+                                <div>AVG. DISTANCE</div>
+                                <div>628 MIL. km</div>
+                            </div>
+                            <div className='right-footer'>
+                                <div>Est. travel time</div>
+                                <div>3 years</div>
+                            </div>
+                        </div>
                     </TabContent>
                     <TabContent id="titan" className={activeTab['titan'] === "1" ? 'active' : null}>
-                        Titan Details
+                        <h1>TITAN</h1>
+                        <p>
+                            The only moon known to have a dense atmosphere other than Earth, 
+                            Titan is a home away from home (just a few hundred degrees colder!). 
+                            As a bonus, you get striking views of the Rings of Saturn.
+                        </p>
+                        <hr />
+                        <div className='footer'>
+                            <div className='left-footer'>
+                                <div>AVG. DISTANCE</div>
+                                <div>1.6 BIL. km</div>
+                            </div>
+                            <div className='right-footer'>
+                                <div>Est. travel time</div>
+                                <div>7 years</div>
+                            </div>
+                        </div>
                     </TabContent>
                 </TabContents>
             </RightSideStyled>
