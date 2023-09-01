@@ -23,6 +23,14 @@ const LogoStyled = styled.div`
             z-index: 1;
         }
     }
+    @media (max-width: 1024px) {
+        > .logo-div {
+            padding: 1.5rem 2.5rem;
+        }
+        > .hr-div {
+            display: none;
+        }
+    }
 `;
 
 const Logo = () => {

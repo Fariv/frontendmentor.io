@@ -9,7 +9,10 @@ const MenuWrapperStyled = styled.ul`
     margin: 0;
     background-color: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(36px);
-    @media (max-width: 841px) {
+    @media (max-width: 1024px) {
+        padding: 0;
+    }
+    @media (max-width: 767px) {
         flex-direction: column;
         position: fixed;
         height: 100%;
@@ -42,7 +45,13 @@ const MenuStyled = styled.li`
     &.close-menu {
         display: none;
     }
-    @media (max-width: 841px) {
+    @media (max-width: 1024px) {
+        margin: 0 0 0 2.25rem;
+        &:last-child {
+            margin: 0 2.25rem 0 2.25rem;
+        }
+    }
+    @media (max-width: 767px) {
         margin: 0;
         padding: 0 0 1rem 0;
         font-weight: 700;
@@ -70,7 +79,12 @@ const MenuLinkStyled = styled.a`
         color: #dcdcf4;
     }
     letter-spacing: 2px;
-    @media (max-width: 841px) {
+    @media (max-width: 1024px) {
+        > .menu-number {
+            display: none;
+        }
+    }
+    @media (max-width: 767px) {
         color: hsl(220, 13%, 13%);
         &:visited {
             color: hsl(220, 13%, 13%);
