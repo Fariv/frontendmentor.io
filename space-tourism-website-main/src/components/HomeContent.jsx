@@ -1,10 +1,19 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { css, styled } from "styled-components";
+import useWindowDimensions from "../hooks/useWindowDimensions";
+import HomeBgImageTablet from "../assets/home/background-home-tablet.jpg";
+import HomeBgImageDesktop from "../assets/home/background-home-desktop.jpg";
+import BgContext from "../contexts/BgContext";
 
 const HomeContentStyled = styled.div`
     display: flex;
     justify-content: space-between;
     margin: 12.7rem 7rem 0 7rem;
+    @media (max-width: 1024px) {
+        flex-direction: column;
+        align-items: center;
+        margin: 6.35rem 7rem 0 7rem;
+    }
 `;
 
 const sharedCss = css`
@@ -15,6 +24,11 @@ const sharedCss = css`
 const LeftSideStyled = styled.div`
     ${sharedCss}
     padding-left: 5rem;
+    @media (max-width: 1024px) {
+        padding-left: 0;
+        width: 100%;
+        margin-bottom: 3.5rem;
+    }
 `;
 
 const LeftSideTextWrapper = styled.div`
@@ -36,6 +50,10 @@ const LeftSideTextWrapper = styled.div`
         font-size: 18px;
         font-weight: 400;
         line-height: 1.7;
+    }
+    @media (max-width: 1024px) {
+        width: 100%;
+        text-align: center;
     }
 `;
 
@@ -75,6 +93,7 @@ const CircleOverlayStyled = styled.div`
 
 const HomeContent = () => {
 
+    const {setBg} = useContext(BgContext);
     const [overLayOpacity, setOverLayOpacity] = useState(0);
     const showOverLay = () => {
         setOverLayOpacity(0.1);
@@ -82,6 +101,17 @@ const HomeContent = () => {
     const hideOverLay = () => {
         setOverLayOpacity(0);
     }
+
+    const { width } = useWindowDimensions();
+    useEffect(() => {
+        if (width > 767 && width < 1025) {
+
+            setBg(HomeBgImageTablet);
+        } else if (width > 1024) {
+            
+            setBg(HomeBgImageDesktop);
+        }
+    }, [width]);
 
     return (
         <HomeContentStyled>
