@@ -4,7 +4,7 @@ import { css, styled } from "styled-components";
 const HomeContentStyled = styled.div`
     display: flex;
     justify-content: space-between;
-    margin: 6rem 7rem 0 7rem;
+    margin: 12.7rem 7rem 0 7rem;
 `;
 
 const sharedCss = css`
@@ -18,18 +18,24 @@ const LeftSideStyled = styled.div`
 `;
 
 const LeftSideTextWrapper = styled.div`
-    width: 400px;
+    width: 470px;
     > div {
-        font-size: 36px;
+        font-family: 'Barlow Condensed', sans-serif;
+        font-size: 28px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
     }
     > h1 {
-        font-size: 100px;
+        font-family: 'Bellefair', serif;
+        font-size: 150px;
         margin-top: 20px;
-        margin-bottom: 70px;
+        margin-bottom: 20px;
     }
     > p {
+        font-family: 'Barlow', sans-serif;
+        font-size: 18px;
         font-weight: 400;
-        line-height: 1.6;
+        line-height: 1.7;
     }
 `;
 
@@ -38,11 +44,12 @@ const RightSideStyled = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0 0 3rem 0;
 `;
 
 const CircleStyled = styled.div`
-    width: 250px;
-    height: 250px;
+    width: 274px;
+    height: 274px;
     border-radius: 50%;
     font-size: 25px;
     text-transform: uppercase;
