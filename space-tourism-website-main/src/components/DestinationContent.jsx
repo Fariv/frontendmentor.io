@@ -1,23 +1,37 @@
 import React, { useContext, useEffect, useState } from 'react'
 import BgContext from '../contexts/BgContext';
 import DestinationBgImageDesktop from "../assets/destination/background-destination-desktop.jpg";
+import DestinationBgImageTablet from "../assets/destination/background-destination-tablet.jpg";
 import { css, styled } from 'styled-components';
+import useWindowDimensions from '../hooks/useWindowDimensions';
 
 const DestinationContentStyled = styled.div`
     display: flex;
     justify-content: space-between;
-    margin: 1rem 7rem 0 7rem;
+    margin: 1rem 7rem 0 0;
+    @media (max-width: 1024px) {
+        flex-direction: column;
+        margin: 1rem 0 0 0;
+    }
 `;
 
 const sharedCss = css`
     margin: 0 auto;
     width: 50%;
     padding-bottom: 6rem;
+    @media (max-width: 1024px) {
+        padding-left: 2.5rem;
+        width: auto;
+        padding-bottom: 1.7rem;
+    }
 `;
 
 const LeftSideStyled = styled.div`
     ${sharedCss}
     padding-left: 5rem;
+    @media (max-width: 1024px) {
+        margin: 0;
+    }
 `;
 
 const LeftSideText = styled.div`
@@ -37,6 +51,10 @@ const LeftSideText = styled.div`
         font-weight: 700;
         margin-right: 2rem;
     }
+    @media (max-width: 1024px) {
+        margin-bottom: 3.75rem;
+        justify-content: flex-start;
+    }
 `;
 
 const LeftSideCosmicBody = styled.div`
@@ -44,18 +62,29 @@ const LeftSideCosmicBody = styled.div`
     width: 445px;
     height: 445px;
     margin: 0 auto;
+    @media (max-width: 1024px) {
+        width: 300px;
+        height: 300px;
+        background-size: contain;
+    }
 `;
 
 const RightSideStyled = styled.div`
     ${sharedCss}
     padding-left: 8rem;
     margin-top: 11rem;
+    @media (max-width: 1024px) {
+        margin-top: 1.7rem;
+    }
 `;
 
 const Tabs = styled.ul`
     display: flex;
     list-style: none;
     color: #dcdcf4;
+    @media (max-width: 1024px) {
+        justify-content: center;
+    }
 `;
 
 const Tab = styled.li`
@@ -197,6 +226,27 @@ const TabContent = styled.div`
                 }
             }
         }
+        @media (max-width: 1024px) {
+            > h1 {
+                text-align: center;
+            }
+            > p {
+                text-align: center;
+            }
+            > .footer {
+                justify-content: center;
+                > .right-footer,
+                > .left-footer {
+                    text-align: center;
+                    > div:first-child {
+                        text-align: center;
+                    }
+                    > div:nth-child(2) {
+                        text-align: center;
+                    }
+                }
+            }
+        }
     }
 `;
 
@@ -209,8 +259,15 @@ const DestinationContent = () => {
         'titan': "0", 
     });
 
+    const { width } = useWindowDimensions();
     useEffect(() => {
-        setBg(DestinationBgImageDesktop);
+        if (width > 767 && width < 1025) {
+
+            setBg(DestinationBgImageTablet);
+        } else if (width > 1024) {
+            
+            setBg(DestinationBgImageDesktop);
+        }
     }, []);
 
     const toggleTab = (e, tabId) => {
