@@ -121,42 +121,19 @@ const SliderDotStyled = styled.div`
 
 const CrewContent = () => {
     const {setBg} = useContext(BgContext);
-    const [selectedCrew, setSelectedCrew] =  useState({
-        'douglas-hurley': {
-            'active': "1",
-            'detailSubHeaderText': "Commander",
-            'detailHeaderText': "Douglas Hurley",
-            'detailText': "Douglas Gerald Hurley is an American engineer, former Marine Corps pilot and former NASA astronaut. He launched into space for the third time as commander of Crew Dragon Demo-2.",
-        }, 
-        'mark-shuttleworth': {
-            'active': "0",
-            'detailSubHeaderText': "Mission Specialist",
-            'detailHeaderText': "Mark Shuttleworth",
-            'detailText': "Mark Richard Shuttleworth is the founder and CEO of Canonical, the company behind the Linux-based Ubuntu operating system. Shuttleworth became the first South African to travel to space as a space tourist.",
-        }, 
-        'victor-glover': {
-            'active': "0",
-            'detailSubHeaderText': "Pilot",
-            'detailHeaderText': "Victor Glover",
-            'detailText': "Pilot on the first operational flight of the SpaceX Crew Dragon to the International Space Station. Glover is a commander in the U.S. Navy where he pilots an F/A-18.He was a crew member of Expedition 64, and served as a station systems flight engineer.",
-        }, 
-        'anousheh-ansari': {
-            'active': "0",
-            'detailSubHeaderText': "Flight Engineer",
-            'detailHeaderText': "Anousheh Ansari",
-            'detailText': "Anousheh Ansari is an Iranian American engineer and co-founder of Prodea Systems. Ansari was the fourth self-funded space tourist, the first self-funded woman to fly to the ISS, and the first Iranian in space. ",
-        }, 
-    });
+    const [selectedCrewDetail, setSelectedCrewDetail] =  useState({});
+    const [allCrewsWithActive, setAllCrewsWithActive] =  useState({});
 
     const doSlide = (crewname) => {
-        let crews = {...selectedCrew};
+        let crews = {...allCrewsWithActive};
         crews['douglas-hurley']['active'] = "0";
         crews['mark-shuttleworth']['active'] = "0"; 
         crews['victor-glover']['active'] = "0";
         crews['anousheh-ansari']['active'] = "0";
 
         crews[crewname]['active'] = "1";
-        setSelectedCrew(crews);
+        setAllCrewsWithActive(crews);
+        setSelectedCrewDetail(crews[crewname]);
     };
 
     const { width } = useWindowDimensions();
@@ -170,14 +147,38 @@ const CrewContent = () => {
         }
     }, [width]);
 
-    let crewDetail = {};
     useEffect(() => {
-        Object.keys(selectedCrew).map((crewname) => {
 
-            if (selectedCrew[crewname]['active'] === "1") {
-                crewDetail = selectedCrew[crewname];
+        Object.keys(allCrewsWithActive).map((crewname) => {
+
+            if (allCrewsWithActive[crewname]['active'] === "1") {
+                setSelectedCrewDetail(allCrewsWithActive[crewname]);
             }
         });
+
+        let crewDataMod = {}
+        const baseURL = window.location.origin;        
+        fetch(baseURL + '/data.json').then(response => response.json()).then(data => {
+            const crewData = data['crew'];
+            crewData.map((each, i) => {
+                let slug = each['name'].replace(' ', '-').toLowerCase();
+                crewDataMod[slug] = {
+                    'detailSubHeaderText': each['role'],
+                    'detailHeaderText': each['name'],
+                    'detailText': each['bio'],
+                };
+                if (i === 0) {
+
+                    crewDataMod[slug]['active'] = "1";
+                    setSelectedCrewDetail(crewDataMod[slug]);
+                } else {
+
+                    crewDataMod[slug]['active'] = "0";
+                }
+            });
+
+            setAllCrewsWithActive(crewDataMod);
+        })
     }, []);
 
 
@@ -189,24 +190,23 @@ const CrewContent = () => {
                     <h1>MEET YOUR CREW</h1>
                 </LeftSideText>
                 <Detail>
-                    {console.log(selectedCrew)}
-                    <DetailSubheader>{Object.keys(selectedCrew).map((v) => selectedCrew[v]['active'] === "1" ? selectedCrew[v]['detailSubHeaderText'] : null)}</DetailSubheader>
-                    <DetailHeader>{Object.keys(selectedCrew).map((v) => selectedCrew[v]['active'] === "1" ? selectedCrew[v]['detailHeaderText'] : null)}</DetailHeader>
-                    <DetailText>{Object.keys(selectedCrew).map((v) => selectedCrew[v]['active'] === "1" ? selectedCrew[v]['detailText'] : null)}</DetailText>
+                    <DetailSubheader>{selectedCrewDetail['detailSubHeaderText']}</DetailSubheader>
+                    <DetailHeader>{selectedCrewDetail['detailHeaderText']}</DetailHeader>
+                    <DetailText>{selectedCrewDetail['detailText']}</DetailText>
                 </Detail>
                 <SliderDotsStyled>
-                    {Object.keys(selectedCrew).map((crewname, index) => {
+                    {Object.keys(allCrewsWithActive).map((crewname, index) => {
 
                         return (<SliderDotStyled 
                             key={Math.random(index+50)} 
-                            active={selectedCrew[crewname]['active']} 
+                            active={allCrewsWithActive[crewname]['active']} 
                             onClick={() => doSlide(crewname)} 
                         />);
                     })}
                 </SliderDotsStyled>
             </LeftSideStyled>
             <RightSideStyled>
-                <RightSideCosmicBody cosmicbodyname={Object.keys(selectedCrew).filter((v) => selectedCrew[v]['active'] === "1" ? v : null)} />
+                <RightSideCosmicBody cosmicbodyname={Object.keys(allCrewsWithActive).filter((v) => allCrewsWithActive[v]['active'] === "1" ? v : null)} />
             </RightSideStyled>
         </CrewContentStyled>
     );
