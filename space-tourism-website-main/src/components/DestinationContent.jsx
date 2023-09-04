@@ -28,7 +28,7 @@ const sharedCss = css`
 
 const LeftSideStyled = styled.div`
     ${sharedCss}
-    padding-left: 5rem;
+    padding-left: 12.25rem;
     @media (max-width: 1024px) {
         margin: 0;
     }
@@ -49,7 +49,8 @@ const LeftSideText = styled.div`
     }
     > h1.menu-number {
         font-weight: 700;
-        margin-right: 2rem;
+        margin-right: 1.5rem;
+        color: rgba(255, 255, 255, 0.25);
     }
     @media (max-width: 1024px) {
         margin-bottom: 3.75rem;
