@@ -13,6 +13,8 @@ const CrewContentStyled = styled.div`
     @media (max-width: 1024px) {
         flex-direction: column;
         margin: 1rem 0 0 0;
+        align-items: center;
+        text-align: center;
     }
 `;
 
@@ -21,7 +23,7 @@ const sharedCss = css`
     width: 50%;
     @media (max-width: 1024px) {
         padding-left: 2.5rem;
-        width: auto;
+        width: 100%;
         padding-bottom: 1.7rem;
     }
 `;
@@ -64,6 +66,9 @@ const RightSideStyled = styled.div`
     margin-top: 0;
     @media (max-width: 1024px) {
         margin-top: 1.7rem;
+        height: 100%;
+        padding-bottom: 0;
+        padding-left: 0;
     }
 `;
 
@@ -74,10 +79,6 @@ const RightSideCosmicBody = styled.div`
     margin: 0 auto;
     background-size: contain;
     background-position-x: center;
-    @media (max-width: 1024px) {
-        width: 300px;
-        height: 300px;
-    }
 `;
 
 const Detail = styled.div`
@@ -103,11 +104,18 @@ const DetailText = styled.p`
     line-height: 1.7;
     margin-top: 1rem;
     max-width: 444px;
+    @media (max-width: 1024px) {
+        margin-left: auto; 
+        margin-right: auto; 
+    }
 `;
 
 const SliderDotsStyled = styled.div`
     display: flex;
     margin-top: 120px;
+    @media (max-width: 1024px) {
+        justify-content: center;
+    }
 `;
 
 const SliderDotStyled = styled.div`
