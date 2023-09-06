@@ -157,13 +157,6 @@ const CrewContent = () => {
 
     useEffect(() => {
 
-        Object.keys(allCrewsWithActive).map((crewname) => {
-
-            if (allCrewsWithActive[crewname]['active'] === "1") {
-                setSelectedCrewDetail(allCrewsWithActive[crewname]);
-            }
-        });
-
         let crewDataMod = {}
         const baseURL = window.location.origin;        
         fetch(baseURL + '/data.json').then(response => response.json()).then(data => {
