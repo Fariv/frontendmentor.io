@@ -13,7 +13,6 @@ const TechnologyContentStyled = styled.div`
     @media (max-width: 1024px) {
         flex-direction: column;
         margin: 1rem 0 0 0;
-        align-items: center;
         text-align: center;
     }
 `;
@@ -58,6 +57,14 @@ const LeftSideText = styled.div`
     @media (max-width: 1024px) {
         margin-bottom: 3.75rem;
         justify-content: flex-start;
+        padding-left: 2.5rem;
+    }
+`;
+
+const LeftRideSidesContainer = styled.div`
+    display: flex;
+    @media (max-width: 1024px) {
+        flex-direction: column-reverse;
     }
 `;
 
@@ -141,6 +148,11 @@ const RightSideCosmicBody = styled.div`
     height: 527px;
     background-size: contain;
     background-position-x: right;
+    @media (max-width: 1024px) {
+        width: 768px;
+        height: 310px;
+        background-position-x: center;
+    }
 `;
 
 const LeftBottomContainerStyled = styled.div`
@@ -210,39 +222,41 @@ const TechnologyContent = () => {
 
     return (
         <TechnologyContentStyled>
-            <LeftSideStyled>
-                <LeftSideText>
-                    <h1 className='menu-number'>03</h1> 
-                    <h1>SPACE LAUNCH 101</h1>
-                </LeftSideText>
-                <LeftBottomContainerStyled>
-                    <Pager>
-                        {Object.keys(allTechsWithActive).map((techname, index) => {
+            <LeftSideText>
+                <h1 className='menu-number'>03</h1> 
+                <h1>SPACE LAUNCH 101</h1>
+            </LeftSideText>
+            <LeftRideSidesContainer>
+                <LeftSideStyled>
+                    <LeftBottomContainerStyled>
+                        <Pager>
+                            {Object.keys(allTechsWithActive).map((techname, index) => {
 
-                            return (
-                                <EachPage 
-                                    key={Math.random(index+50)} 
-                                    active={allTechsWithActive[techname]['active']} 
-                                    onClick={() => doChangePage(techname)} 
-                                >
-                                    {index+1}
-                                </EachPage>
-                            );
-                        })}
-                    </Pager>
-                    <Detail>
-                        <DetailSubheader>{selectedTechDetail['detailSubHeaderText']}</DetailSubheader>
-                        <DetailHeader>{selectedTechDetail['detailHeaderText']}</DetailHeader>
-                        <DetailText>{selectedTechDetail['detailText']}</DetailText>
-                    </Detail>
-                </LeftBottomContainerStyled>
-            </LeftSideStyled>
-            <RightSideStyled>
-                <RightSideCosmicBody 
-                    imagestyle={isDesktop ? "portrait" : "landscape"} 
-                    cosmicbodyname={Object.keys(allTechsWithActive).filter((v) => allTechsWithActive[v]['active'] === "1" ? v : null)}
-                />
-            </RightSideStyled>
+                                return (
+                                    <EachPage 
+                                        key={Math.random(index+50)} 
+                                        active={allTechsWithActive[techname]['active']} 
+                                        onClick={() => doChangePage(techname)} 
+                                    >
+                                        {index+1}
+                                    </EachPage>
+                                );
+                            })}
+                        </Pager>
+                        <Detail>
+                            <DetailSubheader>{selectedTechDetail['detailSubHeaderText']}</DetailSubheader>
+                            <DetailHeader>{selectedTechDetail['detailHeaderText']}</DetailHeader>
+                            <DetailText>{selectedTechDetail['detailText']}</DetailText>
+                        </Detail>
+                    </LeftBottomContainerStyled>
+                </LeftSideStyled>
+                <RightSideStyled>
+                    <RightSideCosmicBody 
+                        imagestyle={isDesktop ? "portrait" : "landscape"} 
+                        cosmicbodyname={Object.keys(allTechsWithActive).filter((v) => allTechsWithActive[v]['active'] === "1" ? v : null)}
+                    />
+                </RightSideStyled>
+            </LeftRideSidesContainer>
         </TechnologyContentStyled>
     );
 }
