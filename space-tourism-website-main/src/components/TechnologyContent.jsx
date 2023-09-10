@@ -79,6 +79,9 @@ const RightSideStyled = styled.div`
 const Pager = styled.ul`
     margin-top: 3rem;
     list-style: none;
+    @media (max-width: 1024px) {
+        display: flex;
+    }
 `;
 
 const EachPage = styled.li`
@@ -138,6 +141,13 @@ const RightSideCosmicBody = styled.div`
     height: 527px;
     background-size: contain;
     background-position-x: right;
+`;
+
+const LeftBottomContainerStyled = styled.div`
+    display: flex;
+    @media (max-width: 1024px) {
+        flex-direction: column;
+    }
 `;
 
 const TechnologyContent = () => {
@@ -205,7 +215,7 @@ const TechnologyContent = () => {
                     <h1 className='menu-number'>03</h1> 
                     <h1>SPACE LAUNCH 101</h1>
                 </LeftSideText>
-                <div style={{display: 'flex'}}>
+                <LeftBottomContainerStyled>
                     <Pager>
                         {Object.keys(allTechsWithActive).map((techname, index) => {
 
@@ -225,7 +235,7 @@ const TechnologyContent = () => {
                         <DetailHeader>{selectedTechDetail['detailHeaderText']}</DetailHeader>
                         <DetailText>{selectedTechDetail['detailText']}</DetailText>
                     </Detail>
-                </div>
+                </LeftBottomContainerStyled>
             </LeftSideStyled>
             <RightSideStyled>
                 <RightSideCosmicBody 
