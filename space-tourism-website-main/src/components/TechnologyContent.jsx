@@ -14,6 +14,7 @@ const TechnologyContentStyled = styled.div`
         flex-direction: column;
         margin: 1rem 0 0 0;
         text-align: center;
+        justify-content: unset;
     }
 `;
 
@@ -33,6 +34,7 @@ const LeftSideStyled = styled.div`
     padding-left: 12.25rem;
     @media (max-width: 1024px) {
         margin: 0;
+        padding-left: 0;
     }
 `;
 
@@ -81,6 +83,7 @@ const RightSideStyled = styled.div`
         height: 100%;
         padding-bottom: 0;
         padding-left: 0;
+        justify-content: center;
     }
 `;
 const Pager = styled.ul`
@@ -88,6 +91,7 @@ const Pager = styled.ul`
     list-style: none;
     @media (max-width: 1024px) {
         display: flex;
+        justify-content: center;
     }
 `;
 
@@ -110,11 +114,25 @@ const EachPage = styled.li`
         background-color: #FFF;
         color: #0B0D17;
     }
+    @media (max-width: 1024px) {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+        padding: 0.95rem;
+        margin-right: 2rem;
+    }
 `;
 
 const Detail = styled.div`
     margin-top: 3rem;
     margin-left: 5rem;
+    @media (max-width: 1024px) {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 0;
+    }
 `;
 
 const DetailSubheader = styled.div`
@@ -149,8 +167,9 @@ const RightSideCosmicBody = styled.div`
     background-size: contain;
     background-position-x: right;
     @media (max-width: 1024px) {
-        width: 768px;
+        width: 100%;
         height: 310px;
+        background-size: 100%;
         background-position-x: center;
     }
 `;
