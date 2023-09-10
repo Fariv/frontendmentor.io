@@ -30,6 +30,7 @@ const sharedCss = css`
 
 const LeftSideStyled = styled.div`
     ${sharedCss}
+    width: 59%;
     padding-left: 12.25rem;
     @media (max-width: 1024px) {
         margin: 0;
@@ -62,6 +63,7 @@ const LeftSideText = styled.div`
 
 const RightSideStyled = styled.div`
     ${sharedCss}
+    width: 41%;
     padding-left: 0;
     margin-top: 0;
     @media (max-width: 1024px) {
@@ -71,14 +73,40 @@ const RightSideStyled = styled.div`
         padding-left: 0;
     }
 `;
+const Pager = styled.ul`
+    margin-top: 3rem;
+    list-style: none;
+`;
+
+const EachPage = styled.li`
+    cursor: pointer;
+    width: 80px;
+    height: 80px;
+    border: 1px solid #FFF;
+    border-radius: 50%;
+    font-family: 'Bellefair', serif;
+    font-size: 36px;
+    color: ${props => props.active === "1" ? "#0B0D17" : "#FFF"};
+    text-align: center;
+    padding: 1.25rem;
+    margin-bottom: 2rem;
+    background-color: ${props => props.active === "1" ? "#FFF" : "transparent"};
+    &:focus,
+    &:active,
+    &:hover {
+        background-color: #FFF;
+        color: #0B0D17;
+    }
+`;
 
 const Detail = styled.div`
     margin-top: 3rem;
+    margin-left: 5rem;
 `;
 
 const DetailSubheader = styled.div`
-    font-family: 'Bellefair', serif;
-    font-size: 32px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 16px;
     color: rgba(255, 255, 255, 0.52);
     text-transform: uppercase;
 `;
@@ -140,9 +168,21 @@ const TechnologyContent = () => {
                 }
             });
 
+            console.log(techDataMod);
             setAllTechsWithActive(techDataMod);
         })
     }, []);
+
+    const doChangePage = (techname) => {
+        let techs = {...allTechsWithActive};
+        techs['launch-vehicle']['active'] = "0";
+        techs['space-capsule']['active'] = "0"; 
+        techs['spaceport']['active'] = "0";
+
+        techs[techname]['active'] = "1";
+        setAllTechsWithActive(techs);
+        setSelectedTechDetail(techs[techname]);
+    }
 
     return (
         <TechnologyContentStyled>
@@ -151,11 +191,27 @@ const TechnologyContent = () => {
                     <h1 className='menu-number'>03</h1> 
                     <h1>SPACE LAUNCH 101</h1>
                 </LeftSideText>
-                <Detail>
-                    <DetailSubheader>{selectedTechDetail['detailSubHeaderText']}</DetailSubheader>
-                    <DetailHeader>{selectedTechDetail['detailHeaderText']}</DetailHeader>
-                    <DetailText>{selectedTechDetail['detailText']}</DetailText>
-                </Detail>
+                <div style={{display: 'flex'}}>
+                    <Pager>
+                        {Object.keys(allTechsWithActive).map((techname, index) => {
+
+                            return (
+                                <EachPage 
+                                    key={Math.random(index+50)} 
+                                    active={allTechsWithActive[techname]['active']} 
+                                    onClick={() => doChangePage(techname)} 
+                                >
+                                    {index+1}
+                                </EachPage>
+                            );
+                        })}
+                    </Pager>
+                    <Detail>
+                        <DetailSubheader>{selectedTechDetail['detailSubHeaderText']}</DetailSubheader>
+                        <DetailHeader>{selectedTechDetail['detailHeaderText']}</DetailHeader>
+                        <DetailText>{selectedTechDetail['detailText']}</DetailText>
+                    </Detail>
+                </div>
             </LeftSideStyled>
             <RightSideStyled>
                 
