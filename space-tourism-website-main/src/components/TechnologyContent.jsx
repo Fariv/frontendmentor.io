@@ -66,6 +66,9 @@ const RightSideStyled = styled.div`
     width: 41%;
     padding-left: 0;
     margin-top: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
     @media (max-width: 1024px) {
         margin-top: 1.7rem;
         height: 100%;
@@ -129,19 +132,30 @@ const DetailText = styled.p`
     }
 `;
 
+const RightSideCosmicBody = styled.div`
+    background: url("${prop => "/technology/image-" + prop.cosmicbodyname + "-" + prop.imagestyle + ".jpg"}") no-repeat;
+    width: 515px;
+    height: 527px;
+    background-size: contain;
+    background-position-x: right;
+`;
+
 const TechnologyContent = () => {
     const {setBg} = useContext(BgContext);
     const [selectedTechDetail, setSelectedTechDetail] =  useState({});
     const [allTechsWithActive, setAllTechsWithActive] =  useState({});
+    const [isDesktop, setIsDesktop] =  useState(0);
 
     const { width } = useWindowDimensions();
     useEffect(() => {
         if (width > 767 && width < 1025) {
             
             setBg(TechnologyBgImageTablet);
+            setIsDesktop(0);
         } else if (width > 1024) {
             
             setBg(TechnologyBgImageDesktop);
+            setIsDesktop(1);
         }
     }, [width]);
 
@@ -214,7 +228,10 @@ const TechnologyContent = () => {
                 </div>
             </LeftSideStyled>
             <RightSideStyled>
-                
+                <RightSideCosmicBody 
+                    imagestyle={isDesktop ? "portrait" : "landscape"} 
+                    cosmicbodyname={Object.keys(allTechsWithActive).filter((v) => allTechsWithActive[v]['active'] === "1" ? v : null)}
+                />
             </RightSideStyled>
         </TechnologyContentStyled>
     );
