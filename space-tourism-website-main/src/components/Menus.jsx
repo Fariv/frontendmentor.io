@@ -1,10 +1,11 @@
 import React from 'react'
 import { styled } from 'styled-components';
+import IconClose from "../assets/shared/icon-close.svg";
 
 const MenuWrapperStyled = styled.ul`
     display: flex;
     list-style: none;
-    color: #dcdcf4;
+    color: #fff;
     padding: 0 14.75rem 0px 2.75rem;
     margin: 0;
     background-color: rgba(255, 255, 255, 0.05);
@@ -12,35 +13,35 @@ const MenuWrapperStyled = styled.ul`
     @media (max-width: 1024px) {
         padding: 0;
     }
-    @media (max-width: 767px) {
+    @media (max-width: 768px) {
         flex-direction: column;
         position: fixed;
         height: 100%;
         width: 300px;
         top: 0;
-        left: ${prop => prop.open ? '0' : '-300px'};
-        transition: left 0.5s ease-in-out;
+        right: ${prop => prop.open ? '0' : '-300px'};
+        transition: right 0.5s ease-in-out;
         z-index: 3;
-        background: #fff;
+        background-color: rgba(255, 255, 255, 0.1);
         padding: 1.5rem 0 0 1.5rem;
     }
 `;
 const MenuStyled = styled.li`
     margin: 0 0 0 2.8rem;
-    color: #dcdcf4;
+    color: #fff;
     padding: 2.25rem 0 2.25rem 0;
     border-bottom: 4px solid transparent;
     &.active,
     &:focus,
     &:active,
     &:hover {
-        border-bottom: 4px solid #dcdcf4;
+        border-bottom: 4px solid #fff;
         color: #000;
         transition: border-bottom ease-in 0.25s;
     }
     &.active > a,
     &:hover > a {
-        color: #dcdcf4;
+        color: #fff;
     }
     &.close-menu {
         display: none;
@@ -51,22 +52,26 @@ const MenuStyled = styled.li`
             margin: 0 2.25rem 0 2.25rem;
         }
     }
-    @media (max-width: 767px) {
-        margin: 0;
-        padding: 0 0 1rem 0;
+    @media (max-width: 768px) {
+        margin: 0 1.5rem 0 0;
+        padding: 0 0 2rem 0;
         font-weight: 700;
-        border-bottom: 4px solid transparent;
+        border-bottom: none;
+        &:last-child {
+            margin: 0 1.5rem 0 0;
+        }
         &.close-menu {
             display: block;
             font-size: 26px;
             font-weight: 700;
             padding: 0 0 2rem 0;
         }
+        &.active,
         &:focus,
         &:active,
         &:hover {
-            border-bottom: 4px solid transparent;
-            transition: border-bottom ease-in 0.25s;
+            border-bottom: none;
+            color: #fff;
         }
     }
     
@@ -74,24 +79,15 @@ const MenuStyled = styled.li`
 
 const MenuLinkStyled = styled.a`
     text-decoration: none;
-    color: #dcdcf4;
+    color: #fff;
+    cursor: pointer;
     &:visited {
-        color: #dcdcf4;
+        color: #fff;
     }
     letter-spacing: 2px;
     @media (max-width: 1024px) {
         > .menu-number {
             display: none;
-        }
-    }
-    @media (max-width: 767px) {
-        color: hsl(220, 13%, 13%);
-        &:visited {
-            color: hsl(220, 13%, 13%);
-        }
-        &.close-menu-link:visited,
-        &.close-menu-link {
-            color: #dcdcf4;
         }
     }
     > .menu-number {
@@ -101,13 +97,29 @@ const MenuLinkStyled = styled.a`
     > .menu-name {
         font-weight: 400;
     }
+    @media (max-width: 768px) {
+        color: #fff;
+        &.close-menu-link {
+            float: right;
+        }
+        &:visited {
+            color: #fff;
+        }
+        &.close-menu-link:visited,
+        &.close-menu-link {
+            color: #fff;
+        }
+        > .menu-number {
+            display: inline-block;
+        }
+    }
 `;
 
 const Menus = ({open, closeMenu}) => {
 
     return (
         <MenuWrapperStyled open={open}>
-            <MenuStyled className='close-menu'><MenuLinkStyled href="#" className='close-menu-link' onClick={closeMenu} >&times;</MenuLinkStyled></MenuStyled>
+            <MenuStyled className='close-menu'><MenuLinkStyled className='close-menu-link' onClick={closeMenu} ><img src={IconClose} alt='icon close' /></MenuLinkStyled></MenuStyled>
             <MenuStyled className={location.pathname === "/" ? "active" : ""}><MenuLinkStyled href="/"><span className='menu-number'>00</span> <span className='menu-name'>HOME</span></MenuLinkStyled></MenuStyled>
             <MenuStyled className={location.pathname === "/destination" ? "active" : ""}><MenuLinkStyled href="/destination"><span className='menu-number'>01</span> <span className='menu-name'>DESTINATION</span></MenuLinkStyled></MenuStyled>
             <MenuStyled className={location.pathname === "/crew" ? "active" : ""}><MenuLinkStyled href="/crew"><span className='menu-number'>02</span> <span className='menu-name'>CREW</span></MenuLinkStyled></MenuStyled>
