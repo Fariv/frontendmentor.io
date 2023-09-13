@@ -3,6 +3,7 @@ import { css, styled } from "styled-components";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 import HomeBgImageTablet from "../assets/home/background-home-tablet.jpg";
 import HomeBgImageDesktop from "../assets/home/background-home-desktop.jpg";
+import HomeBgImageMobile from "../assets/home/background-home-mobile.jpg";
 import BgContext from "../contexts/BgContext";
 
 const HomeContentStyled = styled.div`
@@ -123,12 +124,15 @@ const HomeContent = () => {
 
     const { width } = useWindowDimensions();
     useEffect(() => {
-        if (width > 767 && width < 1025) {
+        if (width > 768 && width < 1025) {
 
             setBg(HomeBgImageTablet);
         } else if (width > 1024) {
             
             setBg(HomeBgImageDesktop);
+        } else if (width <= 768 ) {
+
+            setBg(HomeBgImageMobile);
         }
     }, [width]);
 
