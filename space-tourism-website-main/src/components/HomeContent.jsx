@@ -14,6 +14,9 @@ const HomeContentStyled = styled.div`
         align-items: center;
         margin: 6.35rem 7rem 0 7rem;
     }
+    @media (max-width: 768px) {
+        margin: 1.5rem 0 0 0;
+    }
 `;
 
 const sharedCss = css`
@@ -54,6 +57,22 @@ const LeftSideTextWrapper = styled.div`
     @media (max-width: 1024px) {
         width: 100%;
         text-align: center;
+    }
+    @media (max-width: 768px) {
+        > div {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 16px;
+        }
+        > h1 {
+            font-family: 'Bellefair', serif;
+            font-size: 80px;
+        }
+        > p {
+            font-family: 'Barlow', sans-serif;
+            font-size: 15px;
+            margin-left: 3rem;
+            margin-right: 3rem;
+        }
     }
 `;
 
