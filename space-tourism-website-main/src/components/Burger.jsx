@@ -8,8 +8,8 @@ const BurgerStyled = styled.div`
 
 const Burger = ({showMenu}) => {
     return (
-        <BurgerStyled>
-            <img src={IconHamburger} alt="Icon Hamburger" onClick={showMenu} />
+        <BurgerStyled onClick={showMenu}>
+            <img src={IconHamburger} alt="Icon Hamburger" />
         </BurgerStyled>
     );
 }

@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import BgContext from '../contexts/BgContext';
 import DestinationBgImageDesktop from "../assets/destination/background-destination-desktop.jpg";
 import DestinationBgImageTablet from "../assets/destination/background-destination-tablet.jpg";
+import DestinationBgImageMobile from "../assets/destination/background-destination-mobile.jpg";
 import { css, styled } from 'styled-components';
 import useWindowDimensions from '../hooks/useWindowDimensions';
 
@@ -13,6 +14,9 @@ const DestinationContentStyled = styled.div`
         flex-direction: column;
         margin: 1rem 0 0 0;
     }
+    @media (max-width: 768px) {
+        margin: 0;
+    }
 `;
 
 const sharedCss = css`
@@ -23,6 +27,9 @@ const sharedCss = css`
         padding-left: 2.5rem;
         width: auto;
         padding-bottom: 1.7rem;
+    }
+    @media (max-width: 768px) {
+        padding-left: 0;
     }
 `;
 
@@ -56,6 +63,18 @@ const LeftSideText = styled.div`
         margin-bottom: 3.75rem;
         justify-content: flex-start;
     }
+    @media (max-width: 768px) {
+        margin-bottom: 1rem;
+        justify-content: center;
+        width: 100%;
+        > h1 {
+            font-size: 16px;
+            font-weight: 400;
+        }
+        > h1.menu-number {
+            font-size: 16px;
+        }
+    }
 `;
 
 const LeftSideCosmicBody = styled.div`
@@ -68,6 +87,10 @@ const LeftSideCosmicBody = styled.div`
         height: 300px;
         background-size: contain;
     }
+    @media (max-width: 768px) {
+        width: 170px;
+        height: 170px;
+    }
 `;
 
 const RightSideStyled = styled.div`
@@ -77,19 +100,25 @@ const RightSideStyled = styled.div`
     @media (max-width: 1024px) {
         margin-top: 1.7rem;
     }
+    @media (max-width: 768px) {
+        margin-top: 0;
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+        width: 100%;
+    }
 `;
 
 const Tabs = styled.ul`
     display: flex;
     list-style: none;
-    color: #dcdcf4;
+    color: #fff;
     @media (max-width: 1024px) {
         justify-content: center;
     }
 `;
 
 const Tab = styled.li`
-    color: #dcdcf4;
+    color: #fff;
     padding: 0 0 1.25rem 0;
     margin-right: 1.5rem;
     border-bottom: 4px solid transparent;
@@ -97,13 +126,22 @@ const Tab = styled.li`
     &:focus,
     &:active,
     &:hover {
-        border-bottom: 4px solid #dcdcf4;
+        border-bottom: 4px solid #fff;
         color: #000;
         transition: border-bottom ease-in 0.25s;
     }
     &:active,
     &:hover > a {
-        color: #dcdcf4;
+        color: #fff;
+    }
+    > a {
+        text-decoration: none;
+        text-transform: uppercase;
+        color: #fff;
+        &:visited {
+            color: #fff;
+        }
+        letter-spacing: 2px;
     }
     @media (max-width: 841px) {
         margin: 0;
@@ -117,14 +155,19 @@ const Tab = styled.li`
             transition: border-bottom ease-in 0.25s;
         }
     }
-    > a {
-        text-decoration: none;
-        text-transform: uppercase;
-        color: #dcdcf4;
-        &:visited {
-            color: #dcdcf4;
+    @media (max-width: 768px) {
+        margin: 0;
+        padding: 1.25rem;
+        font-weight: 700;
+        border-bottom: 4px solid transparent;
+        &.active,
+        &:focus,
+        &:active,
+        &:hover {
+            border-bottom: 4px solid #fff;
+            transition: border-bottom ease-in 0.25s;
+            font-size: 14px;
         }
-        letter-spacing: 2px;
     }
 `;
 
@@ -139,6 +182,7 @@ const TabContent = styled.div`
     height: 0;
     padding-top: 0;
     flex-direction: column;
+    overflow: hidden;
     > h1 {
         width: 0;
         height: 0;
@@ -248,6 +292,24 @@ const TabContent = styled.div`
                 }
             }
         }
+        @media (max-width: 768px) {
+            > h1 {
+                font-family: 'Bellefair', serif;
+                font-size: 56px;
+            }
+            > p {
+                font-family: 'Barlow', serif;
+                font-size: 15px;
+                max-width: unset;
+                width: 100%;
+            }
+            > hr {
+                max-width: unset;
+                width: 100%;
+                border: 1px solid #383B4B;
+                height: auto;
+            }
+        }
     }
 `;
 
@@ -262,12 +324,15 @@ const DestinationContent = () => {
 
     const { width } = useWindowDimensions();
     useEffect(() => {
-        if (width > 767 && width < 1025) {
+        if (width > 768 && width < 1025) {
 
             setBg(DestinationBgImageTablet);
         } else if (width > 1024) {
             
             setBg(DestinationBgImageDesktop);
+        } else if (width <= 768 ) {
+            
+            setBg(DestinationBgImageMobile);
         }
     }, []);
 
