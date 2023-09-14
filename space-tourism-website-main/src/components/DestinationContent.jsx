@@ -309,6 +309,13 @@ const TabContent = styled.div`
                 border: 1px solid #383B4B;
                 height: auto;
             }
+            > .footer {
+                flex-direction: column;
+                align-items: center;
+                > .left-footer {
+                    margin-bottom: 2rem;
+                }
+            }
         }
     }
 `;
