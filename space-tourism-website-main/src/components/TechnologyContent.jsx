@@ -4,6 +4,7 @@ import useWindowDimensions from "../hooks/useWindowDimensions";
 import TechnologyBgImageDesktop from "../assets/technology/background-technology-desktop.jpg";
 import TechnologyBgImageTablet from "../assets/technology/background-technology-tablet.jpg";
 import { css, styled } from "styled-components";
+import LeftSideContainer from "../styled/LeftSideContainer";
 
 const TechnologyContentStyled = styled.div`
     display: flex;
@@ -60,13 +61,6 @@ const LeftSideText = styled.div`
         margin-bottom: 3.75rem;
         justify-content: flex-start;
         padding-left: 2.5rem;
-    }
-`;
-
-const LeftRideSidesContainer = styled.div`
-    display: flex;
-    @media (max-width: 1024px) {
-        flex-direction: column-reverse;
     }
 `;
 
@@ -245,7 +239,7 @@ const TechnologyContent = () => {
                 <h1 className='menu-number'>03</h1> 
                 <h1>SPACE LAUNCH 101</h1>
             </LeftSideText>
-            <LeftRideSidesContainer>
+            <LeftSideContainer>
                 <LeftSideStyled>
                     <LeftBottomContainerStyled>
                         <Pager>
@@ -275,7 +269,7 @@ const TechnologyContent = () => {
                         cosmicbodyname={Object.keys(allTechsWithActive).filter((v) => allTechsWithActive[v]['active'] === "1" ? v : null)}
                     />
                 </RightSideStyled>
-            </LeftRideSidesContainer>
+            </LeftSideContainer>
         </TechnologyContentStyled>
     );
 }
