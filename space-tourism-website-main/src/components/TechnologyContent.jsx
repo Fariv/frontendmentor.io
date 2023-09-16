@@ -8,14 +8,20 @@ import LeftSideContainer from "../styled/LeftSideContainer";
 
 const TechnologyContentStyled = styled.div`
     display: flex;
-    justify-content: space-between;
     margin: 1rem 0 0 0;
     height: 100vh;
+    flex-direction: column;
     @media (max-width: 1024px) {
         flex-direction: column;
         margin: 1rem 0 0 0;
         text-align: center;
         justify-content: unset;
+        height: 100%;
+    }
+    @media (max-width: 768px) {
+        margin: 0;
+        height: 100%;
+        justify-content: space-between;
     }
 `;
 
@@ -33,19 +39,28 @@ const LeftSideStyled = styled.div`
     ${sharedCss}
     width: 59%;
     padding-left: 12.25rem;
+    @media (min-width: 1025px) {
+        display: flex;
+        align-items: center;
+    }
     @media (max-width: 1024px) {
         margin: 0;
         padding-left: 0;
     }
+    @media (max-width: 768px) {
+        margin: 0;
+        padding-bottom: 0;
+    }
 `;
 
 const LeftSideText = styled.div`
-    width: 400px;
+    width: 100%;
     letter-spacing: 2px;
     font-family: 'Barlow Condensed', sans-serif;
     text-transform: uppercase;
     display: flex;
-    margin-bottom: 8rem;
+    margin-bottom: 4rem;
+    padding-left: 12.25rem;
     > h1 {
         font-size: 28px;
         margin-top: 20px;
@@ -61,6 +76,22 @@ const LeftSideText = styled.div`
         margin-bottom: 3.75rem;
         justify-content: flex-start;
         padding-left: 2.5rem;
+    }
+    @media (max-width: 768px) {
+        width: 100%;
+        padding-left: 0;
+        margin-bottom: 0;
+        justify-content: center;
+        > h1 {
+            font-size: 16px;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        > h1.menu-number {
+            font-size: 16px;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
     }
 `;
 
@@ -86,6 +117,10 @@ const Pager = styled.ul`
     @media (max-width: 1024px) {
         display: flex;
         justify-content: center;
+    }
+    @media (max-width: 768px) {
+        display: flex;
+        margin-top: 2rem;
     }
 `;
 
@@ -127,6 +162,9 @@ const Detail = styled.div`
         align-items: center;
         margin-left: 0;
     }
+    @media (max-width: 768px) {
+        margin-top: 1.5rem;
+    }
 `;
 
 const DetailSubheader = styled.div`
@@ -134,6 +172,9 @@ const DetailSubheader = styled.div`
     font-size: 16px;
     color: rgba(255, 255, 255, 0.52);
     text-transform: uppercase;
+    @media (max-width: 768px) {
+        font-size: 14px;
+    }
 `;
 
 const DetailHeader = styled.div`
@@ -141,6 +182,9 @@ const DetailHeader = styled.div`
     font-size: 56px;
     text-transform: uppercase;
     margin-top: 1rem;
+    @media (max-width: 768px) {
+        font-size: 24px;
+    }
 `;
 const DetailText = styled.p`
     font-family: 'Barlow', sans-serif;
@@ -148,9 +192,16 @@ const DetailText = styled.p`
     line-height: 1.7;
     margin-top: 1rem;
     max-width: 444px;
+    color: #D0D6F9;
     @media (max-width: 1024px) {
         margin-left: auto; 
         margin-right: auto; 
+    }
+    @media (max-width: 768px) {
+        font-size: 15px;
+        text-align: center;
+        line-height: 1.6;
+        padding: 0 3.7rem;
     }
 `;
 
@@ -166,6 +217,9 @@ const RightSideCosmicBody = styled.div`
         background-size: 100%;
         background-position-x: center;
     }
+    @media (max-width: 768px) {
+        height: 170px;
+    }
 `;
 
 const LeftBottomContainerStyled = styled.div`
@@ -179,18 +233,24 @@ const TechnologyContent = () => {
     const {setBg} = useContext(BgContext);
     const [selectedTechDetail, setSelectedTechDetail] =  useState({});
     const [allTechsWithActive, setAllTechsWithActive] =  useState({});
+    const [leftSideContainerDirection, setLeftSideContainerDirection] =  useState("row");
     const [isDesktop, setIsDesktop] =  useState(0);
 
     const { width } = useWindowDimensions();
     useEffect(() => {
-        if (width > 767 && width < 1025) {
+        if (width > 768 && width < 1025) {
             
             setBg(TechnologyBgImageTablet);
             setIsDesktop(0);
+            setLeftSideContainerDirection("column-reverse");
         } else if (width > 1024) {
             
             setBg(TechnologyBgImageDesktop);
             setIsDesktop(1);
+            setLeftSideContainerDirection("row");
+        } else if (width <= 768) {
+
+            setLeftSideContainerDirection("column-reverse");
         }
     }, [width]);
 
@@ -239,7 +299,7 @@ const TechnologyContent = () => {
                 <h1 className='menu-number'>03</h1> 
                 <h1>SPACE LAUNCH 101</h1>
             </LeftSideText>
-            <LeftSideContainer>
+            <LeftSideContainer direction={leftSideContainerDirection} style={{marginBottom: "3rem"}}>
                 <LeftSideStyled>
                     <LeftBottomContainerStyled>
                         <Pager>
