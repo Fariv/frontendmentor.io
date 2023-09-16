@@ -3,6 +3,7 @@ import BgContext from "../contexts/BgContext";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 import TechnologyBgImageDesktop from "../assets/technology/background-technology-desktop.jpg";
 import TechnologyBgImageTablet from "../assets/technology/background-technology-tablet.jpg";
+import TechnologyBgImageMobile from "../assets/technology/background-technology-mobile.jpg";
 import { css, styled } from "styled-components";
 import LeftSideContainer from "../styled/LeftSideContainer";
 
@@ -250,6 +251,8 @@ const TechnologyContent = () => {
             setLeftSideContainerDirection("row");
         } else if (width <= 768) {
 
+            setBg(TechnologyBgImageMobile);
+            setIsDesktop(0);
             setLeftSideContainerDirection("column-reverse");
         }
     }, [width]);
